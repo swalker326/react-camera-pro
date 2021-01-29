@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useRef, useState, useEffect, useImperativeHandle } from 'react';
 import styled from 'styled-components';
 

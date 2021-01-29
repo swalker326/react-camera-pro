@@ -1,6 +1,12 @@
-/* eslint-disable */
-import React, { useRef, useState, useEffect, useImperativeHandle } from 'react';
-import styled from 'styled-components';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var React = require('react');
+var React__default = _interopDefault(React);
+var styled = _interopDefault(require('styled-components'));
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -37,25 +43,25 @@ var Cam = styled.video(templateObject_4 || (templateObject_4 = __makeTemplateObj
 var Canvas = styled.canvas(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  display: none;\n"], ["\n  display: none;\n"])));
 var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5;
 
-var Camera = React.forwardRef(function (_a, ref) {
+var Camera = React__default.forwardRef(function (_a, ref) {
     var _b = _a.facingMode, facingMode = _b === void 0 ? 'user' : _b, _c = _a.aspectRatio, aspectRatio = _c === void 0 ? 'cover' : _c, _d = _a.numberOfCamerasCallback, numberOfCamerasCallback = _d === void 0 ? function () { return null; } : _d, _e = _a.errorMessages, errorMessages = _e === void 0 ? {
         noCameraAccessible: 'No camera device accessible. Please connect your camera or try a different browser.',
         permissionDenied: 'Permission denied. Please refresh and give camera permission.',
         switchCamera: 'It is not possible to switch camera to different one because there is only one video device accessible.',
         canvas: 'Canvas is not supported.',
     } : _e;
-    var player = useRef(null);
-    var canvas = useRef(null);
-    var container = useRef(null);
-    var _f = useState(0), numberOfCameras = _f[0], setNumberOfCameras = _f[1];
-    var _g = useState(null), stream = _g[0], setStream = _g[1];
-    var _h = useState(facingMode), currentFacingMode = _h[0], setFacingMode = _h[1];
-    var _j = useState(false), notSupported = _j[0], setNotSupported = _j[1];
-    var _k = useState(false), permissionDenied = _k[0], setPermissionDenied = _k[1];
-    useEffect(function () {
+    var player = React.useRef(null);
+    var canvas = React.useRef(null);
+    var container = React.useRef(null);
+    var _f = React.useState(0), numberOfCameras = _f[0], setNumberOfCameras = _f[1];
+    var _g = React.useState(null), stream = _g[0], setStream = _g[1];
+    var _h = React.useState(facingMode), currentFacingMode = _h[0], setFacingMode = _h[1];
+    var _j = React.useState(false), notSupported = _j[0], setNotSupported = _j[1];
+    var _k = React.useState(false), permissionDenied = _k[0], setPermissionDenied = _k[1];
+    React.useEffect(function () {
         numberOfCamerasCallback(numberOfCameras);
     }, [numberOfCameras]);
-    useImperativeHandle(ref, function () { return ({
+    React.useImperativeHandle(ref, function () { return ({
         takePhoto: function () {
             var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
             if (numberOfCameras < 1) {
@@ -109,10 +115,10 @@ var Camera = React.forwardRef(function (_a, ref) {
             return numberOfCameras;
         },
     }); });
-    useEffect(function () {
+    React.useEffect(function () {
         initCameraStream(stream, setStream, currentFacingMode, setNumberOfCameras, setNotSupported, setPermissionDenied);
     }, [currentFacingMode]);
-    useEffect(function () {
+    React.useEffect(function () {
         if (stream && player && player.current) {
             player.current.srcObject = stream;
         }
@@ -124,12 +130,12 @@ var Camera = React.forwardRef(function (_a, ref) {
             }
         };
     }, [stream]);
-    return (React.createElement(Container, { ref: container, aspectRatio: aspectRatio },
-        React.createElement(Wrapper, null,
-            notSupported ? React.createElement(ErrorMsg, null, errorMessages.noCameraAccessible) : null,
-            permissionDenied ? React.createElement(ErrorMsg, null, errorMessages.permissionDenied) : null,
-            React.createElement(Cam, { ref: player, id: "video", muted: true, autoPlay: true, playsInline: true, mirrored: currentFacingMode === 'user' ? true : false }),
-            React.createElement(Canvas, { ref: canvas }))));
+    return (React__default.createElement(Container, { ref: container, aspectRatio: aspectRatio },
+        React__default.createElement(Wrapper, null,
+            notSupported ? React__default.createElement(ErrorMsg, null, errorMessages.noCameraAccessible) : null,
+            permissionDenied ? React__default.createElement(ErrorMsg, null, errorMessages.permissionDenied) : null,
+            React__default.createElement(Cam, { ref: player, id: "video", muted: true, autoPlay: true, playsInline: true, mirrored: currentFacingMode === 'user' ? true : false }),
+            React__default.createElement(Canvas, { ref: canvas }))));
 });
 Camera.displayName = 'Camera';
 var initCameraStream = function (stream, setStream, currentFacingMode, setNumberOfCameras, setNotSupported, setPermissionDenied) {
@@ -193,4 +199,4 @@ var handleError = function (error, setNotSupported, setPermissionDenied) {
     }
 };
 
-export { Camera };
+exports.Camera = Camera;
